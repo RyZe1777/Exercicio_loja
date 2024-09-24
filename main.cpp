@@ -32,7 +32,7 @@ int getOpcao(){
     return opcao;
 }
 
-void adicionarProduto(Produto produtos[], int& quantidadeAtual){ //relacionar quantiadeAtual com a quantidade
+void adicionarProduto(Produto produtos[], int& quantidadeAtual){ //caso haja mudança na quantidadeAtual esta fica guardado no endereço de memoria
     cout << "Qual o Nome do Produto: " << endl;
     cin >> produtos[quantidadeAtual].nome; 
     
