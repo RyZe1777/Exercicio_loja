@@ -47,7 +47,7 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual){ //caso haja mud
     cout << "\nProduto Adicionado Com Sucesso!" <<endl;
 }
 
-void exibirProduto(const Produto produtos[], int quantidadeAtual){
+void exibirProduto(const Produto produtos[], int quantidadeAtual){ //const pois os valores nao sao modificados
     if (quantidadeAtual== 0){
         cout << "\n Nenhum Produto Encontrado" <<endl;
     }else{
