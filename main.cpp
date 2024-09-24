@@ -66,7 +66,7 @@ void exibirProduto(const Produto produtos[], int quantidadeAtual){
 float calcularValorTotal(const Produto produtos[], int quantidadeAtual){
     float total = 0;
     for(int x = 0; x < quantidadeAtual; x++){
-        total += produtos[x].preco * produtos[x].quantidade;
+        total += produtos[x].preco * produtos[x].quantidade; //total do stock total
     }
     return total;
 }
