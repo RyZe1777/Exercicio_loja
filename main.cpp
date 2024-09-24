@@ -32,7 +32,7 @@ int getOpcao(){
     return opcao;
 }
 
-void adicionarProduto(Produto produtos[], int& quantidadeAtual){
+void adicionarProduto(Produto produtos[], int& quantidadeAtual){ //relacionar quantiadeAtual com a quantidade
     cout << "Qual o Nome do Produto: " << endl;
     cin >> produtos[quantidadeAtual].nome; 
     
