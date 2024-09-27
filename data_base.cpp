@@ -28,7 +28,7 @@ int criar_DataBase(){
         cin >> escolha;
         
         if (escolha == 1){
-            ofstream ficheiro_1("Database.csv"); //variavel do tipo ifstream com o nome de ficheiro_1
+            ofstream ficheiro_1("Database.csv"); //variavel do tipo ofstream com o nome de ficheiro_1
             if(ficheiro_1){
                 cout<< "A sua Base de Dados foi criada com sucesso!" <<endl;
             }else{
