@@ -12,6 +12,37 @@ struct Produto
     int quantidade;
 };
 
+Produto produtos[150]; // array com 150 index's
+int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
+
+
+
+void adicionarProduto(){
+    
+    Produto novo_produto;
+    novo_produto.id = quantidadeAtual + 1;
+    
+    cout << "Qual o Nome do Produto: " << endl;
+    cin >> novo_produto.nome; 
+    
+    cout << "Qual o Preço do Produto: " <<endl ;
+    cin >> novo_produto.preco;
+
+    cout << "Qual a Quantidade do Produto: " <<endl;
+    cin >> novo_produto.quantidade;
+    
+    novo_produto.status = 'A';
+
+    quantidadeAtual++;
+    
+    cout << "\nProduto Adicionado Com Sucesso!" <<endl;
+}
+
+
+
+
+
+
 int criar_DataBase(){
     
     int escolha;
@@ -93,14 +124,14 @@ do{
         break;
         
     case 5://sair
-
+        cout << "\n Saindo do Programa...." <<endl;
         break;
 
     default:
         break;
     }
 
-}while (opcao !=0);
+}while (opcao !=5);
 
     return 0;
 }
