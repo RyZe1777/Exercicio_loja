@@ -16,38 +16,16 @@ Produto produtos[150]; // array com 150 index's
 int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
 
 
-
-void adicionarProduto(){ //acabar
-    
-    Produto novo_produto;
-    novo_produto.id = quantidadeAtual + 1;
-    
-    cout << "Qual o Nome do Produto: " << endl;
-    cin >> novo_produto.nome; 
-    
-    cout << "Qual o Preço do Produto: " <<endl ;
-    cin >> novo_produto.preco;
-
-    cout << "Qual a Quantidade do Produto: " <<endl;
-    cin >> novo_produto.quantidade;
-    
-    novo_produto.status = 'A';
-
-    quantidadeAtual++;
-    
-    cout << "\nProduto Adicionado Com Sucesso!" <<endl;
-}
-
-
 int criar_DataBase(){
     
     int escolha;
     ifstream ficheiro("Database.csv"); //variavel do tipo ifstream com o nome de ficheiro //Database é nome do arquivo que vamos usar para guardar os dados
     
-    //se ja tivermos uma database
+    //se ja tivermos uma database ja criada
     if (ficheiro){ 
+
         cout << "Ja tens uma Base de Dados criada" <<endl;
-    //senao tivermos uma database
+    //senao tivermos uma database ja criada
     }else{
         cout << "Deseja criar um nova Base de Dados?" <<endl;
         cout << "1 - Sim" <<endl;
@@ -66,6 +44,57 @@ int criar_DataBase(){
         }
     }
 }
+
+void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ // penso que esteja pronto
+    ofstream ficheiro("Database.csv") 
+
+    for(int x = 0; x < quantidadeAtual; x ++){
+        ficheiro << produtos[x].id << ","  // ao fazermos ofstream em cima n precisamos voltar a declarar-lo nesta linha
+                 << produtos[x].nome << ","
+                 << produtos[x].preco << ","
+                 << produtos[x].quantidade << ",";
+                 << produtos[x].status <<endl;
+    }
+    ficheiro.close();
+}
+
+
+void adicionarProduto(Produto produtos[], int quantidadeAtual){ //acabar
+    
+    Produto novo_produto;
+    novo_produto.id = quantidadeAtual + 1;
+    
+    cout << "Qual o Nome do Produto: " << endl;
+    cin >> novo_produto.nome; 
+    
+    cout << "Qual o Preço do Produto: " <<endl ;
+    cin >> novo_produto.preco;
+
+    cout << "Qual a Quantidade do Produto: " <<endl;
+    cin >> novo_produto.quantidade;
+    
+    novo_produto.status = 'A';
+
+    quantidadeAtual++;
+    
+    cout << "\nProduto Adicionado Com Sucesso!" <<endl;
+
+}
+
+void eliminarProduto(){ //acabar
+
+    int id;
+    cout << "Qual o ID do produto que queres eliminar? " <<endl;
+    cin >> id;
+
+}
+
+
+
+
+
+
+
 
 void menu(){
     system("clear");
@@ -127,4 +156,3 @@ do{
 
     return 0;
 }
-
