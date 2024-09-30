@@ -112,7 +112,7 @@ do{
         break;
 
     case 2://consultar
-        criar_DataBase; // maybe posiçao errada
+        criar_DataBase(); // its working
         break;
 
     case 3://alterar
