@@ -17,7 +17,7 @@ int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adi
 
 
 
-void adicionarProduto(){
+void adicionarProduto(){ //acabar
     
     Produto novo_produto;
     novo_produto.id = quantidadeAtual + 1;
@@ -37,10 +37,6 @@ void adicionarProduto(){
     
     cout << "\nProduto Adicionado Com Sucesso!" <<endl;
 }
-
-
-
-
 
 
 int criar_DataBase(){
@@ -70,10 +66,6 @@ int criar_DataBase(){
         }
     }
 }
-
-
-
-
 
 void menu(){
     system("clear");
@@ -112,7 +104,7 @@ do{
         break;
 
     case 2://consultar
-        criar_DataBase(); // its working
+        criar_DataBase(); // maybe posiçao errada
         break;
 
     case 3://alterar
@@ -135,3 +127,4 @@ do{
 
     return 0;
 }
+
