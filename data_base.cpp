@@ -11,11 +11,11 @@ struct Produto
     float preco;
     int quantidade;
 };
-
+//--------------------------------------------------------------------------------------------------------------------
 Produto produtos[150]; // array com 150 index's
 int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
 int ultimoIDutilizado = 0; // vai manter controlo do ID de cada produto
-
+//---------------------------------------------------------------------------------------------------------------------
 void menu(){
     system("clear");
     cout << "\n==========================" <<endl;
@@ -136,8 +136,6 @@ void consultarProduto(Produto produtos[], int quantidadeAtual){ //pronto
         cout << "O Status do Produto é: " <<produtos[x].status << endl;
     }
 }
-
-
 
 //-----------------------------------------------------------------------------------------
 int main(){
