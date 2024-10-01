@@ -107,7 +107,7 @@ void eliminarProduto(Produto produtos[], int quantidadeAtual){ //pronto
     
     for(int x = 0; x < quantidadeAtual; x++){
         
-        if(id == produtos[x].id){
+        if(id == produtos[x].id){ //igualar o id ao id do array produtos
             
             produtos[x].status = 'D'; //automaticamente muda o status para D
             
