@@ -14,87 +14,7 @@ struct Produto
 
 Produto produtos[150]; // array com 150 index's
 int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
-
-
-int criar_DataBase(){
-    
-    int escolha;
-    ifstream ficheiro("Database.csv"); //variavel do tipo ifstream com o nome de ficheiro //Database é nome do arquivo que vamos usar para guardar os dados
-    
-    //se ja tivermos uma database ja criada
-    if (ficheiro){ 
-
-        cout << "Ja tens uma Base de Dados criada" <<endl;
-    //senao tivermos uma database ja criada
-    }else{
-        cout << "Deseja criar um nova Base de Dados?" <<endl;
-        cout << "1 - Sim" <<endl;
-        cout << "2 - Nao" <<endl;
-        cin >> escolha;
-        
-        if (escolha == 1){
-            ofstream ficheiro_1("Database.csv"); //variavel do tipo ofstream com o nome de ficheiro_1
-            if(ficheiro_1){
-                cout<< "A sua Base de Dados foi criada com sucesso!" <<endl;
-            }else{
-                cout << "Ocorreu um erro na Criação da sua Base de Dados" <<endl;
-            }
-        }else if(escolha == 2){
-            return 0;
-        }
-    }
-}
-
-void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ // penso que esteja pronto
-    ofstream ficheiro("Database.csv") 
-
-    for(int x = 0; x < quantidadeAtual; x ++){
-        ficheiro << produtos[x].id << ","  // ao fazermos ofstream em cima n precisamos voltar a declarar-lo nesta linha
-                 << produtos[x].nome << ","
-                 << produtos[x].preco << ","
-                 << produtos[x].quantidade << ",";
-                 << produtos[x].status <<endl;
-    }
-    ficheiro.close();
-}
-
-
-void adicionarProduto(Produto produtos[], int quantidadeAtual){ //acabar
-    
-    Produto novo_produto;
-    novo_produto.id = quantidadeAtual + 1;
-    
-    cout << "Qual o Nome do Produto: " << endl;
-    cin >> novo_produto.nome; 
-    
-    cout << "Qual o Preço do Produto: " <<endl ;
-    cin >> novo_produto.preco;
-
-    cout << "Qual a Quantidade do Produto: " <<endl;
-    cin >> novo_produto.quantidade;
-    
-    novo_produto.status = 'A';
-
-    quantidadeAtual++;
-    
-    cout << "\nProduto Adicionado Com Sucesso!" <<endl;
-
-}
-
-void eliminarProduto(){ //acabar
-
-    int id;
-    cout << "Qual o ID do produto que queres eliminar? " <<endl;
-    cin >> id;
-
-}
-
-
-
-
-
-
-
+int ultimoIDutilizado = 0; // vai manter controlo do ID de cada produto
 
 void menu(){
     system("clear");
@@ -112,12 +32,114 @@ void menu(){
 
 int getOpcao(){
     int opcao;
-    cout << "Digite a sua opcao: ";
+    cout << "Digite a sua opcao: " <<endl;
     cin >> opcao;
 
     return opcao;
 }
 
+//-------------------------------------------------------------------------------------------
+
+void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
+    ofstream ficheiro("Database.csv"); // estamos a guardar dados no ficheiro Database.csv
+
+    for(int x = 0; x < quantidadeAtual; x ++){
+        ficheiro << produtos[x].id << "," 
+                 << produtos[x].nome << ","
+                 << produtos[x].preco << ","
+                 << produtos[x].quantidade << ","
+                 << produtos[x].status <<endl;
+    }
+    ficheiro.close();
+}
+//----------------------------------------------------------------------------------------
+void adicionarProduto(Produto produtos[], int& quantidadeAtual, int& ultimoIDutilizado){ //pronto
+    
+    produtos[quantidadeAtual].id = ++ultimoIDutilizado; // fazemos uma encrementaçao para adicionar o ID a cada produto 
+    
+    cout << "\nQual o Nome do Produto: " << endl;
+    cin >> produtos[quantidadeAtual].nome;
+    getline(cin,produtos[quantidadeAtual].nome); //vai ler o cin e possibilita a escrita de um nome com espaços
+    
+    cout << "Qual o Preço do Produto: " <<endl ;
+    cin >> produtos[quantidadeAtual].preco; 
+
+    cout << "Qual a Quantidade do Produto: " <<endl;
+    cin >> produtos[quantidadeAtual].quantidade; 
+    
+    produtos[quantidadeAtual].status = 'A';
+
+    quantidadeAtual++;
+    
+    adicionarProdutoDB(produtos,quantidadeAtual); //invocaçao da funçao superior para elas funcionarem ao mesmo tempo
+    
+    cout << "\nProduto Adicionado Com Sucesso!" <<endl;
+
+}
+//-----------------------------------------------------------------------------------------
+void modificarProduto(Produto produtos[], int quantidadeAtual){ //pronto
+    
+    int id;
+    cout << "\nQual o ID do produto que deseja Modificar: " <<endl;
+    cin >> id;
+    
+    for(int x = 0; x < quantidadeAtual; x++){
+        
+        if(id == produtos[x].id){ //igualar o id ao id do array produtos 
+    
+            cout << "Qual o Novo Preço do Produto: " <<endl ;
+            cin >> produtos[x].preco;
+
+            cout << "Qual a Nova Quantidade do Produto: " <<endl;
+            cin >> produtos[x].quantidade;
+        
+            adicionarProdutoDB(produtos,quantidadeAtual);
+        
+        }
+    }
+}
+//-----------------------------------------------------------------------------------------
+void eliminarProduto(Produto produtos[], int quantidadeAtual){ //pronto
+    
+    int id;
+    cout << "\nQual o ID do produto que deseja Excluir: " <<endl;
+    cin >> id;
+    
+    for(int x = 0; x < quantidadeAtual; x++){
+        
+        if(id == produtos[x].id){
+            
+            produtos[x].status = 'D'; //automaticamente muda o status para D
+            
+            adicionarProdutoDB(produtos,quantidadeAtual);
+            
+            cout << "O Produto Foi Excluido com Sucesso!" <<endl;
+        }
+        
+    }
+    
+}
+//------------------------------------------------------------------------------------------
+void consultarProduto(Produto produtos[], int quantidadeAtual){ //pronto
+    
+    if(quantidadeAtual == 0){
+        
+        cout << "\nNenhum Produto encontrado";
+    }
+    
+    for(int x = 0; x < quantidadeAtual; x++){
+        
+        cout << "\nO ID do Produto é: " << produtos[x].id << endl;
+        cout << "O Nome do Produto é: " << produtos[x].nome << endl;
+        cout << "O Preco do Produto é " << produtos[x].preco << endl;
+        cout << "A Quantidade do Produto é: " << produtos[x].quantidade << endl;
+        cout << "O Status do Produto é: " <<produtos[x].status << endl;
+    }
+}
+
+
+
+//-----------------------------------------------------------------------------------------
 int main(){
     
     int opcao;
@@ -128,24 +150,25 @@ do{
     opcao = getOpcao(); // tem que ser assim senao o while nao reconhece a opcao de sair
 
     switch (opcao){
-    case 1: //adicionar
         
+    case 1: //adicionar
+        adicionarProduto (produtos,quantidadeAtual, ultimoIDutilizado);
         break;
 
     case 2://consultar
-        criar_DataBase(); // maybe posiçao errada
+        consultarProduto(produtos, quantidadeAtual);
         break;
 
     case 3://alterar
-       
+       modificarProduto(produtos,quantidadeAtual);
         break;
 
     case 4://eliminar
-
+        eliminarProduto(produtos,quantidadeAtual);
         break;
         
     case 5://sair
-        cout << "\n Saindo do Programa...." <<endl;
+        cout << "\n Saindo do Programa (freaky....)" <<endl;
         break;
 
     default:
