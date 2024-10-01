@@ -50,7 +50,7 @@ void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
                  << produtos[x].quantidade << ","
                  << produtos[x].status <<endl;
     }
-    ficheiro.close();
+    ficheiro.close(); //fecha o ficheiro garantindo que esta td guardado em condiçoes
 }
 //----------------------------------------------------------------------------------------
 void adicionarProduto(Produto produtos[], int& quantidadeAtual, int& ultimoIDutilizado){ //pronto
