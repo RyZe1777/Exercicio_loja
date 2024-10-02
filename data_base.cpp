@@ -66,9 +66,7 @@ void iniciarDB(){
             
             system("clear");
             
-            cout << "\nFicheiro de base de dados criado com sucesso!" << endl;
-            
-            cout << endl;
+            cout << "\nFicheiro data base criado com sucesso!" << endl;
             
         }else{
             
@@ -85,7 +83,7 @@ void lerprodutosDB(Produto produtos[], int& quantidadeAtual, int& ultimoIDutiliz
  
     ifstream ficheiro("Database.csv");
     
-    if (!ficheiro) return;
+    if (!ficheiro) return; //verficar abertura
     
     quantidadeAtual = 0;
     
@@ -96,7 +94,7 @@ void lerprodutosDB(Produto produtos[], int& quantidadeAtual, int& ultimoIDutiliz
             
                 if(getline(ficheiro, linhalida)){ // a cada iteraçao ele guarda os dados do ficheiro na linhalida
                     
-                stringstream ss(line); //dividir linha virgulas
+                stringstream ss(linhalida); //dividir linha virgulas
                 string strID, strPreco, strQuant, strStatus;
         
                 getline(ss, strID, ','); //cada getline le o seu campo e armazena na sua variavel
@@ -109,7 +107,7 @@ void lerprodutosDB(Produto produtos[], int& quantidadeAtual, int& ultimoIDutiliz
                 prod.id = stoi(strID);                
                 prod.preco = stof(strPreco);          
                 prod.quantidade = stoi(strQuant); //conversões
-                prod.status = strStatus[0];
+                prod.status = strStatus[0]; //pega no primeiro caractere na string strstatus
 
                 produtos[quantidadeAtual] = prod; //prod armazenado no array na quantidadeAtual
                 quantidadeAtual++; 
