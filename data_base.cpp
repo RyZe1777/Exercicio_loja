@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream> //biblioteca para ler (ifstream) // para criar e escrever (ofstream) ficheiros
+#include <sstream> //getline
  
 using namespace std;
 
@@ -22,7 +23,7 @@ void menu(){
     cout << "          MENU" <<endl;
     cout << "==========================" <<endl;
     cout << "1-Adicionar Produto" <<endl;
-    cout << "2-Consultar Produto" <<endl; //penso que ja esteja pronto not sure
+    cout << "2-Consultar Produto" <<endl; 
     cout << "3-Alterar Produto" <<endl;
     cout << "4-Eliminar Produto" <<endl;
     cout << "5-SAIR" <<endl;
@@ -43,6 +44,8 @@ int getOpcao(){
 void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
     ofstream ficheiro("Database.csv"); // estamos a guardar dados no ficheiro Database.csv
 
+
+    if(ficheiro.is_open()){
     for(int x = 0; x < quantidadeAtual; x ++){
         ficheiro << produtos[x].id << "," 
                  << produtos[x].nome << ","
@@ -51,6 +54,7 @@ void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
                  << produtos[x].status <<endl;
     }
     ficheiro.close(); //fecha o ficheiro garantindo que esta td guardado em condiçoes
+    }
 }
 //----------------------------------------------------------------------------------------
 void adicionarProduto(Produto produtos[], int& quantidadeAtual, int& ultimoIDutilizado){ //pronto
@@ -58,7 +62,7 @@ void adicionarProduto(Produto produtos[], int& quantidadeAtual, int& ultimoIDuti
     produtos[quantidadeAtual].id = ++ultimoIDutilizado; // fazemos uma encrementaçao para adicionar o ID a cada produto 
     
     cout << "\nQual o Nome do Produto: " << endl;
-    cin >> produtos[quantidadeAtual].nome;
+    cin.ignore(); //limpa o ENTER a seguir do cin e premite q o getline funcione
     getline(cin,produtos[quantidadeAtual].nome); //vai ler o cin e possibilita a escrita de um nome com espaços
     
     cout << "Qual o Preço do Produto: " <<endl ;
@@ -154,7 +158,7 @@ do{
         break;
 
     case 2://consultar
-        consultarProduto(produtos, quantidadeAtual);
+        consultarProduto(produtos,quantidadeAtual);
         break;
 
     case 3://alterar
