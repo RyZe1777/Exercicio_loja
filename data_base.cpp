@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream> //biblioteca para ler (ifstream) // para criar e escrever (ofstream) ficheiros
-#include <sstream> //getline
+#include <sstream> //conversao de string em outros dados
  
 using namespace std;
 
