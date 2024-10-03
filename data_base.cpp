@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream> //biblioteca para ler (ifstream) // para criar e escrever (ofstream) ficheiros
-#include <sstream> //conversao de string em outros dados
+#include <sstream> //manipulaçao de string para outros dados
  
 using namespace std;
 
@@ -13,7 +13,7 @@ struct Produto
     int quantidade;
 };
 //-------------------------------------------------------------------------------------------------------------
-const int producaomax = 150;
+const int producaomax = 100;
 Produto produtos[producaomax];
 int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
 int ultimoIDutilizado = 0; // vai manter controlo do ID de cada produto
