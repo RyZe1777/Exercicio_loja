@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream> //biblioteca para ler (ifstream) // para criar e escrever (ofstream) ficheiros
-#include <sstream> //manipulaçao de string para outros dados
+#include <sstream> //conversao de string em outros dados
  
 using namespace std;
 
@@ -12,12 +12,13 @@ struct Produto
     float preco;
     int quantidade;
 };
-//-------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------------------------------------
 const int producaomax = 100;
 Produto produtos[producaomax];
 int quantidadeAtual = 0; // mantem controlo da quantidade atual dos produtos adicionados no array
 int ultimoIDutilizado = 0; // vai manter controlo do ID de cada produto
-//-------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 void menu(){
     system("clear");
     cout << "\n==========================" <<endl;
@@ -29,7 +30,6 @@ void menu(){
     cout << "4-Eliminar Produto" <<endl;
     cout << "5-SAIR" <<endl;
     cout << "==========================" << endl;
-
 }
 
 int getOpcao(){
@@ -40,7 +40,7 @@ int getOpcao(){
     return opcao;
 }
 
-//-------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 
 void iniciarDB(){
     
@@ -51,8 +51,6 @@ void iniciarDB(){
         char opcao;
         
         cout << "O ficheiro da data base não foi encontrado." << endl;
-        
-        cout << endl;
         
         cout << "Deseja criar uma nova data base? (s/n): ";
         cin >> opcao;
@@ -72,8 +70,9 @@ void iniciarDB(){
             
             system("clear");
             
-            cout << "A fechar o Programa" << endl;
+            cout << "\nA fechar o Programa " << endl;
             
+            exit(0); //fecha o programa
         }
     }
 }
@@ -107,7 +106,7 @@ void lerprodutosDB(Produto produtos[], int& quantidadeAtual, int& ultimoIDutiliz
                 prod.id = stoi(strID);                
                 prod.preco = stof(strPreco);          
                 prod.quantidade = stoi(strQuant); //conversões
-                prod.status = strStatus[0]; //pega no primeiro caractere na string strstatus
+                prod.status = strStatus[0]; //pega no primeiro caractere na string strstatus e iguala ao primeiro caractere do array
 
                 produtos[quantidadeAtual] = prod; //prod armazenado no array na quantidadeAtual
                 quantidadeAtual++; 
@@ -253,7 +252,7 @@ do{
         break;
         
     case 5://sair
-        cout << "\n Saindo do Programa " <<endl;
+        cout << "\n Saindo do Programa (freaky.....) " <<endl;
         break;
 
     default:
