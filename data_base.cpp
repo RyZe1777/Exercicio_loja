@@ -125,7 +125,7 @@ void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
 
 
     if(ficheiro.is_open()){
-    for(int x = 0; x < quantidadeAtual; x ++){
+    for(int x = 0; x < quantidadeAtual; x ++){ //produtos armazenados
         ficheiro << produtos[x].id << "," 
                  << produtos[x].nome << ","
                  << produtos[x].preco << ","
