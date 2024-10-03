@@ -138,7 +138,7 @@ void adicionarProdutoDB(Produto produtos[], int quantidadeAtual){ //pronto
 //----------------------------------------------------------------------------------------
 void adicionarProduto(Produto produtos[], int& quantidadeAtual, int& ultimoIDutilizado){ //pronto
     
-    produtos[quantidadeAtual].id = ++ultimoIDutilizado; // fazemos uma encrementaçao para adicionar o ID a cada produto 
+    produtos[quantidadeAtual].id = ++ultimoIDutilizado; // fazemos uma encrementaçao para adicionar o ID a cada produto id = 0
     
     cout << "\nQual o Nome do Produto: " << endl;
     cin.ignore(); //limpa o ENTER a seguir do cin e premite q o getline funcione
