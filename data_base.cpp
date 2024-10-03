@@ -93,7 +93,7 @@ void lerprodutosDB(Produto produtos[], int& quantidadeAtual, int& ultimoIDutiliz
             
                 if(getline(ficheiro, linhalida)){ // a cada iteraçao ele guarda os dados do ficheiro na linhalida
                     
-                stringstream ss(linhalida); //dividir linha virgulas
+                stringstream ss(linhalida); //possibilita a leitura de uma linha completa na DB
                 string strID, strPreco, strQuant, strStatus;
         
                 getline(ss, strID, ','); //cada getline le o seu campo e armazena na sua variavel
