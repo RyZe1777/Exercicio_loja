@@ -205,7 +205,7 @@ void consultarProduto(Produto produtos[], int quantidadeAtual){ //pronto
     
     if(quantidadeAtual == 0){
         
-        cout << "\nNenhum Produto encontrado";
+        cout << "\nNenhum Produto encontrado" <<endl; 
     }
     
     for(int x = 0; x < quantidadeAtual; x++){
